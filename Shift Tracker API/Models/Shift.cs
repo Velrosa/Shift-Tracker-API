@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json;
 
 namespace Shift_Tracker_API.Models
 {

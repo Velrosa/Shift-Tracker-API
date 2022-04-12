@@ -1,4 +1,5 @@
-﻿using Shift_Tracker_API.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Shift_Tracker_API.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,29 +13,35 @@ namespace Shift_Tracker_API.Repositories
             _context = context;
         }
         
-        public Task<Shift> Create(Shift shift)
+        public async Task<Shift> Create(Shift shift)
         {
-            throw new System.NotImplementedException();
+            _context.Shifts.Add(shift);
+            await _context.SaveChangesAsync();
+
+            return shift;
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var shiftToDelete = await _context.Shifts.FindAsync(id);
+            _context.Shifts.Remove(shiftToDelete);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<IEnumerable<Shift>> Get()
+        public async Task<IEnumerable<Shift>> Get()
         {
-            throw new System.NotImplementedException();
+            return await _context.Shifts.ToListAsync();
         }
 
-        public Task<Shift> Get(int id)
+        public async Task<Shift> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Shifts.FindAsync(id);
         }
 
-        public Task Update(Shift shift)
+        public async Task Update(Shift shift)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(shift).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

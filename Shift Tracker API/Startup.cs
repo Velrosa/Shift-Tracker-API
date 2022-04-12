@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using Shift_Tracker_API.Repositories;
 
 namespace Shift_Tracker_API
 {
@@ -29,6 +30,7 @@ namespace Shift_Tracker_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IShiftRepository, ShiftRepository>();
             services.AddDbContext<ShiftContext>(o => o.UseSqlServer(dbString));
             services.AddControllers();
         }

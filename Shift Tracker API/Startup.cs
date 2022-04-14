@@ -12,14 +12,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 using Shift_Tracker_API.Repositories;
+using System.Configuration;
 
 namespace Shift_Tracker_API
 {
     public class Startup
     {
-        private const string dbString = @"Data Source=(LocalDb)\LocalDBFlashcards;Integrated Security=True";
+        private readonly string dbConString = System.Configuration.ConfigurationManager.ConnectionStrings["dbConString"].ConnectionString;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,7 +32,7 @@ namespace Shift_Tracker_API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IShiftRepository, ShiftRepository>();
-            services.AddDbContext<ShiftContext>(o => o.UseSqlServer(dbString));
+            services.AddDbContext<ShiftContext>(o => o.UseSqlServer(dbConString));
             services.AddControllers();
         }
 

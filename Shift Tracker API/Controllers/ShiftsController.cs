@@ -27,7 +27,10 @@ namespace Shift_Tracker_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Shift>> GetShifts(int id)
         {
-            return await _shiftrepository.Get(id);
+            var shiftToGet = await _shiftrepository.Get(id);
+            if(shiftToGet == null) { return NotFound(); }
+
+            return shiftToGet;
         }
         
         [HttpPost]
@@ -46,7 +49,6 @@ namespace Shift_Tracker_API.Controllers
             }
 
             await _shiftrepository.Update(shift);
-
             return NoContent();
         }
 

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Shift_Tracker_API.Repositories
 {
-    
+
     public interface IShiftRepository
     {
         Task<IEnumerable<Shift>> Get();

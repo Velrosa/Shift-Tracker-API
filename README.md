@@ -1,7 +1,8 @@
 # Shift Tracker API
-- A C# ASP.NET Core Web API
+- A C# ASP.NET Core Web API, Consumers can CRUD Shift data via HTTP requests.
 - an API that handles HTTP requests (GET, POST, PUT, DELETE)
 - Requests are sent through a Controller <-> IRepository <-> Repository <-> Entity Framework <-> SQL server (database)
+- Has a Console Application which consumes the API: https://github.com/Velrosa/Shift-Tracker-Console-App
 
 # Features
 
